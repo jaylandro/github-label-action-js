@@ -21,3 +21,18 @@ jobs:
             } else {
               console.log("wrong label", context.payload)
             }
+  rcoket:
+    runs-on: ubuntu-latest
+    name: Rocket reply
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/github-script@v2
+        with:
+          script: |
+            github.reactions.createForIssue({
+              owner,
+              repo,
+              issue_number,
+              content,
+            });
