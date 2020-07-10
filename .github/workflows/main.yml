@@ -19,5 +19,5 @@ jobs:
                 content_type: "Issue",
               })
             } else {
-              console.log("wrong label")
+              console.log("wrong label", context.payload)
             }
