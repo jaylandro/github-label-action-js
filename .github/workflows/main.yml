@@ -31,8 +31,7 @@ jobs:
         with:
           script: |
             github.reactions.createForIssue({
-              owner: context.payload.repo.owner,
-              repo: context.payload.repo.repo,
+              owner: context.payload.issue.id,
               issue_number: context.payload.issue.number,
               content: "rocket"
             });
