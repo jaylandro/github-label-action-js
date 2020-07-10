@@ -14,11 +14,11 @@ try {
     });
   }
 
-  return `The event payload: ${JSON.stringify(
-    github.context.payload,
-    null,
-    2
-  )}`;
+  let context = JSON.stringify(github.context.payload, null, 2);
+
+  console.log(context);
+
+  return `The event payload: ${context}`;
 } catch (error) {
   core.setFailed(error.message);
 }
