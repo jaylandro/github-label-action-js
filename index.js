@@ -14,7 +14,7 @@ try {
     });
   }
 
-  return `The event payload: ${labelName}, Helper? ${output}, ${JSON.stringify(
+  return `The event payload: ${JSON.stringify(
     github.context.payload,
     null,
     2
