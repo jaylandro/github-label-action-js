@@ -12,8 +12,10 @@ jobs:
       - uses: actions/github-script@v2
         with:
           script: |
-            github.projects.createCard({
-              column_id: 9962014,
-              content_id: context.payload.issue.id,
-              content_type: "Issue",
-            });
+            context.payload.label === "help wanted"
+              ? payload.github.projects.createCard({
+                  column_id: 9962014,
+                  content_id: context.payload.issue.id,
+                  content_type: "Issue",
+                });
+              : console.log("wrong label")
