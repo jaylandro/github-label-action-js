@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
             if(context.payload.label.name === "help wanted") {
-              payload.github.projects.createCard({
+              github.projects.createCard({
                 column_id: 9962014,
                 content_id: context.payload.issue.id,
                 content_type: "Issue",
