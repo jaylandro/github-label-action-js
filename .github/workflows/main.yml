@@ -11,7 +11,6 @@ jobs:
       - uses: actions/github-script@v2
         with:
           with:
-            github-token: ${{secrets.GITHUB_TOKEN}}
             script: |
               const path = require('path')
               const scriptPath = path.resolve('./index.js')
