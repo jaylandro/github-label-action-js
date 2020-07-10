@@ -7,14 +7,31 @@ jobs:
     runs-on: ubuntu-latest
     name: Move to project on label
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - uses: actions/github-script@v2
         with:
-          with:
-            script: |
-              const path = require('path')
-              const scriptPath = path.resolve('./index.js')
-              console.log(require(scriptPath)({context}))
+          script: |
+            const path = require('path')
+            const scriptPath = path.resolve('./index.js')
+            console.log(require(scriptPath)({context}))
+
+
+jobs:
+  reactive_move_on_label:
+    runs-on: ubuntu-latest
+    name: Move to project on label
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Move to project on label
+        uses: ./ # Uses an action in the root directory
+        id: label
+      # Use the output from the `label` step
+      - name: Get the output
+        run: echo "The output ${{ steps.label.outputs.label }}"
 
 # on:
 #   issues:
