@@ -12,11 +12,10 @@ jobs:
       - uses: actions/github-script@v2
         with:
           script: |
-            const { issue, label } = context.payload;
-            if(label.name === "help wanted") {
+            if(context.payload.label.name === "help wanted") {
               payload.github.projects.createCard({
                 column_id: 9962014,
-                content_id: issue.id,
+                content_id: context.payload.issue.id,
                 content_type: "Issue",
               })
             } else {
