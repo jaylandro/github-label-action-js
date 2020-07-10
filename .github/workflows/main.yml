@@ -17,6 +17,7 @@ jobs:
               content_id: context.issue.id,
               content_type: "Issue",
             });
+            console.log(context.issue)
 
 # on:
 #   issues:
