@@ -16,4 +16,4 @@ jobs:
         id: label
       # Use the output from the `label` step
       - name: Get the output
-        run: echo "The output ${{ steps.label.outputs }}"
+        run: echo "The output ${{ steps.label.outputs.label }}"
