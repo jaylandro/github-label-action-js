@@ -1,0 +1,22 @@
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  reactive_move_on_label:
+    runs-on: ubuntu-latest
+    name: Move to project on label
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Move to project on label
+        uses: ./ # Uses an action in the root directory
+        id: label
+        with:
+          who-to-greet: "labeled"
+      # Use the output from the `label` step
+      - name: Get the output
+         run: echo "The output ${{ fromJSON(steps.label.outputs} }} ${{ github.event }}"
+
