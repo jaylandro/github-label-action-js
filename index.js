@@ -3,10 +3,16 @@ const github = require("@actions/github");
 
 try {
   // Get the JSON webhook payload for the event that triggered the workflow
-  const labelName = github.context.payload.label.name;
+  const labelName = github.context.payload.label;
+  const contentId = github.context.payload.issue.id;
 
-  const output =
-    labelName === "help wanted" ? "Yes we want help!" : "No we don't like help";
+  if (labelName === "help wanted") {
+    github.projects.createCard({
+      column_id: 9962014,
+      content_id: contentId,
+      content_type: "Issue",
+    });
+  }
 
   console.log(
     `The event payload: ${labelName}, Helper? ${output}, ${JSON.stringify(

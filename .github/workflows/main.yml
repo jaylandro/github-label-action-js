@@ -14,6 +14,8 @@ jobs:
       - name: Move to project on label
         uses: ./ # Uses an action in the root directory
         id: label
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Use the output from the `label` step
       - name: Get the output
         run: echo "The output ${{ steps.label.outputs.label }}"
