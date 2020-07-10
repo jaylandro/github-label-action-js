@@ -1,7 +1,7 @@
 name: "Move to project on label"
 description: "Move to project on label"
 outputs:
-  time: # id of output
+  label: # id of output
     description: "The time the labeling occured"
 runs:
   using: "node12"
