@@ -3,19 +3,19 @@ on:
     types: [labeled]
 
 jobs:
-  hola_mundo_job:
+  reactive_move_on_label:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Move to project on label
     steps:
       # To use this repository's private action,
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Hello world action step
+      - name: Move to project on label
         uses: ./ # Uses an action in the root directory
-        id: hello
+        id: label
         with:
           who-to-greet: "labeled"
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      # Use the output from the `label` step
+      - name: Get the output
+        run: echo "The output ${{ steps.label.outputs }}"

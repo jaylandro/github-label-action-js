@@ -1,13 +1,8 @@
-name: "Hola Mundo"
-description: "Greet someone and record the time"
-inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
-    required: true
-    default: "Mundo"
+name: "Move to project on label"
+description: "Move to project on label"
 outputs:
   time: # id of output
-    description: "The time we greeted you"
+    description: "The time the labeling occured"
 runs:
   using: "node12"
   main: "index.js"
