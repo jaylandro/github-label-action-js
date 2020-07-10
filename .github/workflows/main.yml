@@ -18,5 +18,4 @@ jobs:
           who-to-greet: "labeled"
       # Use the output from the `label` step
       - name: Get the output
-         run: echo "The output ${{ steps.label.outputs.label }}"
-
+        run: echo "The output ${{ steps.label.outputs.label }} ${{ github.event }}"
