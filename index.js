@@ -14,13 +14,11 @@ try {
     });
   }
 
-  console.log(
-    `The event payload: ${labelName}, Helper? ${output}, ${JSON.stringify(
-      github.context.payload,
-      null,
-      2
-    )}`
-  );
+  return `The event payload: ${labelName}, Helper? ${output}, ${JSON.stringify(
+    github.context.payload,
+    null,
+    2
+  )}`;
 } catch (error) {
   core.setFailed(error.message);
 }
