@@ -12,9 +12,11 @@ jobs:
       - uses: actions/github-script@v2
         with:
           script: |
-            const path = require('path')
-            const scriptPath = path.resolve('./index.js')
-            console.log(require(scriptPath)({context}))
+            github.projects.createCard({
+              column_id: 9962014,
+              content_id: contex.issue.id,
+              content_type: "Issue",
+            });
 
 # on:
 #   issues:
