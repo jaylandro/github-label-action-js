@@ -7,11 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     name: Move to project on label
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
       - name: Move to project on label
-        uses: ./ # Uses an action in the root directory
-        id: label
-      # Use the output from the `label` step
-      - name: Get the output
-        run: echo "The output ${{ steps.label.outputs.label }}"
+      - uses: actions/checkout@v2
+      - uses: actions/github-script@v2
+        with:
+          with:
+          script: |
+            const path = require('path')
+            const scriptPath = path.resolve('./index.js')
+            console.log(require(scriptPath)({context}))

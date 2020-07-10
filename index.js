@@ -1,10 +1,6 @@
-const core = require("@actions/core");
-const github = require("@actions/github");
-
 try {
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const labelName = github.context.payload.label;
-  const contentId = github.context.payload.issue.id;
+  const labelName = context.payload.label;
+  const contentId = context.payload.issue.id;
 
   if (labelName === "help wanted") {
     github.projects.createCard({
@@ -14,11 +10,15 @@ try {
     });
   }
 
-  let context = JSON.stringify(github.context.payload, null, 2);
+  let contextHere = JSON.stringify(context.payload, null, 2);
 
-  console.log(context);
+  console.log(contextHere);
 
-  return `The event payload: ${context}`;
+  return contextHere;
 } catch (error) {
-  core.setFailed(error.message);
+  new Error(error.message);
 }
+
+module.exports = ({ context }) => {
+  return context.payload.client_payload.value;
+};
