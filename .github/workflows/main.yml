@@ -17,22 +17,3 @@ jobs:
               content_id: context.payload.issue.id,
               content_type: "Issue",
             });
-
-# on:
-#   issues:
-#     types: [opened]
-
-# jobs:
-#   comment:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/github-script@v2
-#         with:
-#           github-token: ${{secrets.GITHUB_TOKEN}}
-#           script: |
-#             github.issues.createComment({
-#               issue_number: context.issue.number,
-#               owner: context.repo.owner,
-#               repo: context.repo.repo,
-#               body: '👋 Thanks for reporting!'
-#             })
