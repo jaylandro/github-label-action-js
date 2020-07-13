@@ -12,26 +12,12 @@ jobs:
       - uses: actions/github-script@v2
         with:
           script: |
-            if(context.payload.label.name === "help wanted") {
+            if(["c: SQL Editor"].includes(context.payload.label.name)) {
               github.projects.createCard({
                 column_id: 9962014,
                 content_id: context.payload.issue.id,
                 content_type: "Issue",
               })
             } else {
-              console.log("wrong label", context.payload)
+              console.log("Not ready for Eng", context.payload)
             }
-  rocket:
-    runs-on: ubuntu-latest
-    name: Rocket reply
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - uses: actions/github-script@v2
-        with:
-          script: |
-            github.reactions.createForIssue({
-              owner: context.payload.issue.id,
-              issue_number: context.payload.issue.number,
-              content: "rocket"
-            });
