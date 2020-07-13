@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
             const workflowIssue = ["c: SQL Editor"].includes(context.payload.label.name);
-            const priorityExists = ["P0", "P1", "P2", "P3"].filter(label => context.payload.issue.labels.includes(label));
+            const priorityExists = ["P0", "P1", "P2", "P3"].some(label => context.payload.issue.labels.includes(label));
             if (workflowIssue && priorityExists) {
               github.projects.createCard({
                 column_id: 9962014,
