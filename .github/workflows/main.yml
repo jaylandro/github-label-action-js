@@ -14,4 +14,4 @@ jobs:
           script: |
             const path = require('path')
             const scriptPath = path.resolve('.github/workflows/js/projectBasedOnLabel.js')
-            console.log(require(scriptPath)({context}))
+            console.log(require(scriptPath)({context, github}))
