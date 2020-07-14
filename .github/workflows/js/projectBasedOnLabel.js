@@ -11,12 +11,15 @@ module.exports = ({ context, github }) => {
   );
 
   if (workflowIssue && priorityExists) {
-    return github.projects.createCard({
-      column_id: 9962014,
-      content_id: context.payload.issue.id,
-      content_type: "Issue",
-    });
+    return github.projects
+      .createCard({
+        column_id: 9962014,
+        content_id: context.payload.issue.id,
+        content_type: "Issue",
+      })
+      .then((result) => result)
+      .catch((err) => console.error(err));
   } else {
-    return console.log("Not ready for Eng", context.payload);
+    return `"Not ready for Eng", ${context.payload}`;
   }
 };
