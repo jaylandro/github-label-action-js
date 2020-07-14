@@ -17,9 +17,8 @@ module.exports = ({ context, github }) => {
         content_id: context.payload.issue.id,
         content_type: "Issue",
       })
-      .then((result) => result)
-      .catch((err) => console.error(err));
+      .then((result) => result);
   } else {
-    return `"Not ready for Eng", ${context.payload}`;
+    console.log("Not ready for Eng", context.payload);
   }
 };

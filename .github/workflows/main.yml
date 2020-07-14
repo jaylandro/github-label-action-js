@@ -7,11 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Move to project on label
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - uses: actions/github-script@v2
         with:
           script: |
             const path = require('path')
-            const scriptPath = path.resolve('.github/workflows/js/projectBasedOnLabel.js')
+            const scriptPath = path.resolve('.github/workflows/actions/label-add-to-project.js')
             console.log(require(scriptPath)({context, github}))
