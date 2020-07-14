@@ -1,4 +1,4 @@
-module.exports = ({ context }) => {
+module.exports = ({ context, github }) => {
   const issue = context.payload.issue;
   const labelsAsStrings = issue.labels.map((label) => label.name);
 
