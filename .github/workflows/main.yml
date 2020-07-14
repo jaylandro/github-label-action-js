@@ -12,14 +12,28 @@ jobs:
       - uses: actions/github-script@v2
         with:
           script: |
-            const workflowIssue = ["c: SQL Editor"].some(label => context.payload.issue.labels.includes(label));
-            const priorityExists = ["P0", "P1", "P2", "P3"].some(label => context.payload.issue.labels.includes(label));
-            if (workflowIssue && priorityExists) {
-              github.projects.createCard({
-                column_id: 9962014,
-                content_id: context.payload.issue.id,
-                content_type: "Issue",
-              })
-            } else {
-              console.log("Not ready for Eng", context.payload)
-            }
+            const path = require('path')
+            const scriptPath = path.resolve('./js/projectBasedOnLabel.js')
+            console.log(require(scriptPath)({context})
+
+# jobs:
+#   move_on_label:
+#     runs-on: ubuntu-latest
+#     name: Move to project on label
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - uses: actions/github-script@v2
+#         with:
+#           script: |
+#             const workflowIssue = ["c: SQL Editor"].some(label => context.payload.issue.labels.includes(label));
+#             const priorityExists = ["P0", "P1", "P2", "P3"].some(label => context.payload.issue.labels.includes(label));
+#             if (workflowIssue && priorityExists) {
+#               github.projects.createCard({
+#                 column_id: 9962014,
+#                 content_id: context.payload.issue.id,
+#                 content_type: "Issue",
+#               })
+#             } else {
+#               console.log("Not ready for Eng", context.payload)
+#             }
