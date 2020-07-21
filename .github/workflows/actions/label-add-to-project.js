@@ -1,4 +1,5 @@
 module.exports = ({ context, github }) => {
+  const currentIssue = context.payload.issue;
   const labelName = context.payload.label.name;
 
   const project = {
@@ -13,19 +14,16 @@ module.exports = ({ context, github }) => {
 
   async function labelAndAdd(project) {
     await github.issues.addLabels({
-      issue_number: context.payload.issue.number,
+      issue_number: currentIssue.number,
       owner: context.repo.owner,
       repo: context.repo.repo,
       labels: project.label,
     });
     await github.projects.createCard({
       column_id: project.column_id,
-      content_id: context.payload.issue.id,
+      content_id: currentIssue.id,
       content_type: "Issue",
     });
+    console.log("Label Added & Added to project");
   }
-  console.log("Label Added & Added to project");
-  // } else {
-  //   console.log("Not ready for Eng", context.payload);
-  // }
 };
