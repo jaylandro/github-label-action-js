@@ -4,7 +4,7 @@ module.exports = ({ context, github }) => {
 
   const project = {
     column_id: 9962014,
-    components: ["c: SQL Editor", "Bug", "WIP"],
+    components: ["c: SQL Editor", "bug", "WIP"],
     labels: ["automated!"],
   };
 
