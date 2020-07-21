@@ -37,5 +37,8 @@ module.exports = ({ context, github }) => {
       console.error("Label and add failed with:", error);
     }
   }
-  console.log("Context: ", context);
+
+  /**
+   * console.log("Debug Context: ", context);
+   */
 };
