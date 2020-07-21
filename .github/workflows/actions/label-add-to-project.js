@@ -27,4 +27,5 @@ module.exports = ({ context, github }) => {
     });
     console.log("Label Added & Added to project");
   }
+  console.log("Context", context);
 };
