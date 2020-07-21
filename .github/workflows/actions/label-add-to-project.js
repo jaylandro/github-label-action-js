@@ -25,7 +25,10 @@ module.exports = ({ context, github }) => {
       content_id: currentIssue.id,
       content_type: "Issue",
     });
-    console.log("Label Added & Added to project");
+
+    console.log(
+      `Added Labels: ${project.labels} & added to Project Column ${project.column_id}`
+    );
   }
   console.log("Context", context);
 };
