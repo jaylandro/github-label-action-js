@@ -11,15 +11,15 @@ module.exports = ({ context, github }) => {
     labelAndAdd(project);
   }
 
-  async function labelAndAdd() {
+  async function labelAndAdd(project) {
     await github.issues.addLabels({
       issue_number: context.payload.issue.number,
       owner: context.repo.owner,
       repo: context.repo.repo,
-      labels: selectedProject.label,
+      labels: project.label,
     });
     await github.projects.createCard({
-      column_id: selectedProject.column_id,
+      column_id: project.column_id,
       content_id: context.payload.issue.id,
       content_type: "Issue",
     });
