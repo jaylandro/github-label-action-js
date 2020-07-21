@@ -1,32 +1,30 @@
 module.exports = ({ context, github }) => {
   const issue = context.payload.issue;
-  const labelsAsStrings = issue.labels.map((label) => label.name);
+  let selectedProject;
 
-  const workflowIssue = ["c: SQL Editor"].some((label) =>
-    labelsAsStrings.includes(label)
-  );
+  const project = {
+    column_id: 9962014,
+    components: ["c: SQL Editor", "Bug", "WIP"],
+    label: "automated!"
+  }
 
-  const priorityExists = ["P0", "P1", "P2", "P3"].some((label) =>
-    labelsAsStrings.includes(label)
-  );
+  if (project.components.includes(issue.label)) {
+    selectedProject = project;
+  }
 
-  if (workflowIssue && priorityExists) {
-    return github.issues
-      .addLabels({
-        issue_number: context.payload.issue.number,
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        labels: ["automated!"],
-      })
-      .then((res) => {
-        github.projects
-          .createCard({
-            column_id: 9962014,
-            content_id: context.payload.issue.id,
-            content_type: "Issue",
-          })
-          .then((result) => result);
-      });
+  if (selectedProject) {
+    await github.issues.addLabels({
+      issue_number: context.payload.issue.number,
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      labels: selectedProject.label,
+    })
+    await github.projects.createCard({
+      column_id: selectedProject.column_id,
+      content_id: context.payload.issue.id,
+      content_type: "Issue",
+    })
+    console.log('Label Added:', labelAdded, 'Added to Project', addedToProject)
   } else {
     console.log("Not ready for Eng", context.payload);
   }
