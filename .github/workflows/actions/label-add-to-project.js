@@ -31,7 +31,7 @@ module.exports = ({ context, github }) => {
         `Added Labels: ${project.labels} & added to Project Column ${project.column_id}`
       );
     } catch (error) {
-      if (error[0].message === "Project already has the associated issue") {
+      if (error.message === "Project already has the associated issue") {
         return;
       }
       console.error("Label and add failed with:", error);
