@@ -5,7 +5,7 @@ module.exports = ({ context, github }) => {
   const project = {
     column_id: 9962014,
     components: ["c: SQL Editor", "Bug", "WIP"],
-    label: "automated!",
+    labels: ["automated!"],
   };
 
   if (project.components.includes(labelName)) {
@@ -17,8 +17,9 @@ module.exports = ({ context, github }) => {
       issue_number: currentIssue.number,
       owner: context.repo.owner,
       repo: context.repo.repo,
-      labels: project.label,
+      labels: project.labels,
     });
+
     await github.projects.createCard({
       column_id: project.column_id,
       content_id: currentIssue.id,
