@@ -24,7 +24,7 @@ module.exports = ({ context, github }) => {
       content_type: "Issue",
     });
   }
-  console.log("Label Added:", labelAdded, "Added to Project", addedToProject);
+  console.log("Label Added & Added to project");
   // } else {
   //   console.log("Not ready for Eng", context.payload);
   // }
