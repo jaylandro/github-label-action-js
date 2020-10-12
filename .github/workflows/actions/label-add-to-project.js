@@ -41,14 +41,14 @@ module.exports = ({ context, github }) => {
   
   async function testTeam() {
     try {
-      await github.teams.getMembershipForUserInOrg({  
+      return await github.teams.getMembershipForUserInOrg({  
         org: "jaylandro",
         team_slug: "test-team",
-        username: context.issueAuthor,
+        username: context.actor,
       });  
       
     } catch (error) {
-      console.error("User is not a memeber: ", error);
+      return false;
     }
   };
 
@@ -63,16 +63,17 @@ module.exports = ({ context, github }) => {
 
       console.log(`Added Label: success`);
     } catch (error) {
-      console.error("Label reactive failed with:", error);
+      console.error("Label team failed with:", error);
     }
   };
     
-
-  if (testTeam()) {
+  const memberOfTeam = testTeam();
+  
+  if (memberOfTeam) {
     labelTeam();
   }
 
-  console.log('Is Team?', testTeam());
+  console.log('Is Team?', memberOfTeam);
 
   console.log("Debug Context: ", context);
 };
