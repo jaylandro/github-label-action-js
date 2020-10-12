@@ -39,7 +39,7 @@ module.exports = ({ context, github }) => {
   }
   
   
-  aysnc function testTeam() {
+  async function testTeam() {
     try {
       await github.teams.getMembershipForUserInOrg({  
         org: "jaylandro",
