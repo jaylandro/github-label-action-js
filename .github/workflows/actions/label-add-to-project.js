@@ -41,9 +41,9 @@ module.exports = ({ context, github }) => {
   
   async function testTeam() {
     try {
-      return await github.teams.getMembershipForUserInOrg({  
-        org: "jaylandro",
-        team_slug: "test-team",
+      await github.teams.getMembershipForUserInOrg({  
+        org: "mode",
+        team_slug: "frontend",
         username: context.actor,
       });  
       
@@ -68,6 +68,7 @@ module.exports = ({ context, github }) => {
   };
     
   testTeam().then(res => {
+    console.log('Checkedit?', res);
     if (res) {
       console.log('Is Team?', res);
       labelTeam();
