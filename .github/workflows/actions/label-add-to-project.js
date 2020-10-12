@@ -44,7 +44,7 @@ module.exports = ({ context, github }) => {
       await github.teams.getMembershipForUserInOrg({  
         org: "jaylandro",
         team_slug: "test-team",
-        username: issueAuthor,
+        username: context.issueAuthor,
       });  
       
     } catch (error) {
@@ -74,7 +74,5 @@ module.exports = ({ context, github }) => {
 
   console.log('Is Team?', testTeam());
 
-  /**
-   * console.log("Debug Context: ", context);
-   */
+  console.log("Debug Context: ", context);
 };
