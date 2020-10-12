@@ -38,6 +38,35 @@ module.exports = ({ context, github }) => {
     }
   }
 
+
+  async function labelTeam() {
+    try {
+      await github.issues.addLabels({
+        issue_number: issue.number,
+        owner: context.repo.owner,
+        repo: context.repo.repo,
+        labels: "success",
+      });
+
+      console.log(`Added Label: success`);
+    } catch (error) {
+      console.error("Label reactive failed with:", error);
+    }
+  }
+
+
+  const testTeam = await github.teams.getMembershipForUserInOrg({
+    org: "jaylandro",
+    team_slug: "test-team",
+    username: issueAuthor,
+  });
+
+  if (testTeam) {
+    labelTeam();
+  }
+
+  console.log('Is Team?', successTeam);
+
   /**
    * console.log("Debug Context: ", context);
    */
