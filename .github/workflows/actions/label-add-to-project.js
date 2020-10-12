@@ -67,13 +67,12 @@ module.exports = ({ context, github }) => {
     }
   };
     
-  const memberOfTeam = testTeam();
-  
-  if (memberOfTeam) {
-    labelTeam();
-  }
-
-  console.log('Is Team?', memberOfTeam);
+  testTeam().then(res => {
+    if (res) {
+      console.log('Is Team?', res);
+      labelTeam();
+    }
+  });
 
   console.log("Debug Context: ", context);
 };
