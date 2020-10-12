@@ -37,7 +37,20 @@ module.exports = ({ context, github }) => {
       console.error("Label and add failed with:", error);
     }
   }
-
+  
+  
+  aysnc function testTeam() {
+    try {
+      await github.teams.getMembershipForUserInOrg({  
+        org: "jaylandro",
+        team_slug: "test-team",
+        username: issueAuthor,
+      });  
+      
+    } catch (error) {
+      console.error("User is not a memeber: ", error);
+    }
+  };
 
   async function labelTeam() {
     try {
@@ -52,20 +65,14 @@ module.exports = ({ context, github }) => {
     } catch (error) {
       console.error("Label reactive failed with:", error);
     }
-  }
+  };
+    
 
-
-  const testTeam = await github.teams.getMembershipForUserInOrg({
-    org: "jaylandro",
-    team_slug: "test-team",
-    username: issueAuthor,
-  });
-
-  if (testTeam) {
+  if (testTeam()) {
     labelTeam();
   }
 
-  console.log('Is Team?', successTeam);
+  console.log('Is Team?', testTeam());
 
   /**
    * console.log("Debug Context: ", context);
