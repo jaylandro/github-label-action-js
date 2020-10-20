@@ -1,9 +1,8 @@
 module.exports = ({ context, github }) => {
-  let userRes;
 
   async function testTeam() {
     try {
-      userRes = await github.teams.getMembershipForUserInOrg({
+      return await github.teams.getMembershipForUserInOrg({
         org: "mode",
         team_slug: "frontend",
         username: context.actor,
@@ -13,14 +12,21 @@ module.exports = ({ context, github }) => {
     }
   }
 
-  testTeam().then((res) => {
-    console.log("Checkedit?", res, "UserRes", userRes);
-    if (res) {
-      console.log("Is Team?", res);
-      labelTeam();
-    }
+  const userIsMember = await testTeam();
+
+  console.log("Checkedit?", userIsMember);
+
+  if (userIsMember) {
+    console.log("Is Team?", userIsMember);
+  }
+
+  const rawCheck = await github.teams.getMembershipForUserInOrg({
+    org: "mode",
+    team_slug: "frontend",
+    username: context.actor,
   });
 
+  console.log(rawCheck)
+
   console.log("Debug Context: ", context);
-  console.log("Github Context: ", github.teams);
 };
