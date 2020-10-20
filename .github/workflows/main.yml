@@ -23,3 +23,14 @@ jobs:
         with:
           python-version: "3.x"
       - run: python -V
+  check_user:
+    runs-on: ubuntu-latest
+    name: Check if user is on team
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/github-script@v2
+        with:
+          script: |
+            const path = require('path')
+            const scriptPath = path.resolve('.github/workflows/actions/check-user-team.js')
+            console.log(require(scriptPath)({context, github}))
