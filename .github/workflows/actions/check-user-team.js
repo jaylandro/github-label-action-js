@@ -12,7 +12,7 @@ module.exports = ({ context, github }) => {
     }
   }
 
-  const userIsMember = await testTeam();
+  const userIsMember = testTeam();
 
   console.log("Checkedit?", userIsMember);
 
@@ -26,7 +26,7 @@ module.exports = ({ context, github }) => {
     username: context.actor,
   });
 
-  console.log(rawCheck)
+  console.log(rawCheck, "RAWCHECK")
 
   console.log("Debug Context: ", context);
 };
