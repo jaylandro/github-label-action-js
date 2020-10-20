@@ -3,26 +3,26 @@ on:
     types: [labeled]
 
 jobs:
-  move_on_label:
-    runs-on: ubuntu-latest
-    name: Move to project on label
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/github-script@v2
-        with:
-          script: |
-            const path = require('path')
-            const scriptPath = path.resolve('.github/workflows/actions/label-add-to-project.js')
-            console.log(require(scriptPath)({context, github}))
-  python_example:
-    runs-on: ubuntu-latest
-    name: Setup Python
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: "3.x"
-      - run: python -V
+  # move_on_label:
+  #   runs-on: ubuntu-latest
+  #   name: Move to project on label
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/github-script@v2
+  #       with:
+  #         script: |
+  #           const path = require('path')
+  #           const scriptPath = path.resolve('.github/workflows/actions/label-add-to-project.js')
+  #           console.log(require(scriptPath)({context, github}))
+  # python_example:
+  #   runs-on: ubuntu-latest
+  #   name: Setup Python
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-python@v2
+  #       with:
+  #         python-version: "3.x"
+  #     - run: python -V
   check_user:
     runs-on: ubuntu-latest
     name: Check if user is on team
