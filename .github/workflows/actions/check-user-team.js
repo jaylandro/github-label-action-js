@@ -1,33 +1,20 @@
 module.exports = ({ context, github }) => {
+  let userRes;
+
   async function testTeam() {
     try {
-      await github.teams.getMembershipForUserInOrg({
+      userRes = await github.teams.getMembershipForUserInOrg({
         org: "mode",
         team_slug: "frontend",
         username: context.actor,
       });
     } catch (error) {
-      return false;
-    }
-  }
-
-  async function labelTeam() {
-    try {
-      await github.issues.addLabels({
-        issue_number: issue.number,
-        owner: context.repo.owner,
-        repo: context.repo.repo,
-        labels: "success",
-      });
-
-      console.log(`Added Label: success`);
-    } catch (error) {
-      console.error("Label team failed with:", error);
+      return error;
     }
   }
 
   testTeam().then((res) => {
-    console.log("Checkedit?", res);
+    console.log("Checkedit?", res, "UserRes", userRes);
     if (res) {
       console.log("Is Team?", res);
       labelTeam();
@@ -35,4 +22,5 @@ module.exports = ({ context, github }) => {
   });
 
   console.log("Debug Context: ", context);
+  console.log("Github Context: ", github.teams);
 };
