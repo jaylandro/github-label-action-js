@@ -25,7 +25,8 @@ module.exports = ({ context, github }) => {
       team_slug: "frontend",
       username: context.actor,
     })
-    .then((res) => console.log(res, "RAWCHECK"));
+    .then((res) => res.json())
+    .then((r) => console.log(r, "RAWCHECK"));
 
   console.log("Debug Context: ", context);
 };
